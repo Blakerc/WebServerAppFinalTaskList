@@ -10,12 +10,12 @@ namespace WebAppFinalTaskList.Models
         public string UserId { get; set; }
 
         [Required(ErrorMessage = "Enter a task name")]
-        public string Name { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Enter a task date and time.")]
         [DataType(DataType.Date)]
-        public DateTime IssueDate { get; set; }
+        public DateTime TaskDateTime { get; set; }
 
 
     }

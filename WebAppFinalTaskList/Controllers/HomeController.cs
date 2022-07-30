@@ -28,6 +28,17 @@ namespace WebAppFinalTaskList.Controllers
             return View();
         }
 
+        //this is the method that will post the new Task
+        [HttpPost]
+        public IActionResult NewTask(TaskModel model)
+        {
+           // if (ModelState.IsValid)
+           //     return View(model);
+           // else
+                return View(model);
+
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
