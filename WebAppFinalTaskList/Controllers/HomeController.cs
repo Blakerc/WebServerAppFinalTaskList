@@ -23,7 +23,7 @@ namespace WebAppFinalTaskList.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult NewTask()
         {
             return View();
         }
