@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model TaskModel
 <!DOCTYPE html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -10,5 +11,22 @@
 <div class="text-center">
     <h1 class="display-4">Todo List</h1>
     @*initial commit*@
+</div>
+<div>
+    <table class="table table-bordered table-responsive table-hover">  
+    <tr>  
+        <th>Title </th>  
+        <th>Description </th>  
+        <th>Date/Time</th>   
+    </tr>  
+    @*@foreach (var d in Model)  
+    {  
+        <tr>  
+            <td>@d.Title</td>  
+            <td>@d.Description</td>  
+            <td>@d.TaskDateTime</td>  
+        </tr>  
+    }  *@
+</table>
 </div>
 </body>
