@@ -10,9 +10,9 @@
         <title>Create New Task</title>
     </head>
     <body>
-        <div asp-validation-summary="All"></div>
+        <div asp-validation-summary="All" class="text-danger"></div>
         <div>
-            <form asp-action="NewTask" method="post">
+            <form asp-action="Add" asp-controller="TaskController" method="post">
                 <div>
                     <label asp-for="Title">Title</label>
                     <input asp-for="Title" />
