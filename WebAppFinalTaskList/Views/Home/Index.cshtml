@@ -19,18 +19,19 @@
         <th>Description </th>  
         <th>Date/Time</th>   
     </tr>  
-    @foreach (TaskModel d in Model)  
+    @foreach (TaskModel t in Model)  
     {  
         <tr>  
-            <td>@d.Title</td>  
-            <td>@d.Description</td>  
-            <td>@d.TaskDateTime</td>
-            <td>@d.Id</td>
+            <td>@t.Title</td>  
+            <td>@t.Description</td>  
+            <td>@t.TaskDateTime</td>
+            <td>@t.Id</td>
             <td>
-                <form asp-action="Delete" method="post" id="@d.Id">
-                 <input type="hidden" value="@d.Id"/>
-                 <button type="submit" class="btn btn-success">Complete</button>
+                <form asp-action="Delete" method="post" asp-route-id="@t.Id">
+                    <input type="hidden" />
+                    <button type="submit" class="btn btn-success">Complete</button>
                 </form>
+
             </td>
         </tr>  
     }

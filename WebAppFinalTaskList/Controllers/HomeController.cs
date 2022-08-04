@@ -48,8 +48,8 @@ namespace WebAppFinalTaskList.Controllers
         [HttpGet]
         public ViewResult Delete(int id)
         {
-            var c = this.GetTask(id);
-            return View(c);
+            //var c = this.GetTask(id);
+            return View(tasks.Get(id));
         }
 
         [HttpPost]
