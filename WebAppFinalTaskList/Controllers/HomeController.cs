@@ -30,21 +30,20 @@ namespace WebAppFinalTaskList.Controllers
             return View(tasks.List(taskOptions));
         }
 
-        //public IActionResult NewTask()
-       // {
-         //   return View();
-        //}
+        [HttpGet]
+        public ViewResult NewTask() => View();
 
         //this is the method that will post the new Task
-       // [HttpPost]
-       // public IActionResult NewTask(TaskModel model)
-       // {
-           // if (ModelState.IsValid)
-           //     return View(model);
-           // else
-               // return View(model);
+        [HttpPost]
+        public IActionResult Add(TaskModel task)
+        {
 
-       // }
+                tasks.Insert(task);
+                tasks.Save();
+                return RedirectToAction("Index");
+
+
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
