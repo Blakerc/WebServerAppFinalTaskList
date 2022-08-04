@@ -19,20 +19,14 @@
         <th>Description </th>  
         <th>Date/Time</th>   
     </tr>  
-    @*@foreach (var d in Model)  
+    @foreach (TaskModel d in Model)  
     {  
         <tr>  
             <td>@d.Title</td>  
             <td>@d.Description</td>  
             <td>@d.TaskDateTime</td>  
         </tr>  
-    }*@
-    @*swap to something like this for real data ^*@
-    <tr>  
-            <td>this isn't real data</td>  
-            <td>test Description</td>  
-            <td>test TaskDateTime</td>  
-        </tr> 
+    }
 </table>
 </div>
 </body>
