@@ -24,7 +24,14 @@
         <tr>  
             <td>@d.Title</td>  
             <td>@d.Description</td>  
-            <td>@d.TaskDateTime</td>  
+            <td>@d.TaskDateTime</td>
+            <td>@d.Id</td>
+            <td>
+                <form asp-action="Delete" method="post" id="@d.Id">
+                 <input type="hidden" value="@d.Id"/>
+                 <button type="submit" class="btn btn-success">Complete</button>
+                </form>
+            </td>
         </tr>  
     }
 </table>

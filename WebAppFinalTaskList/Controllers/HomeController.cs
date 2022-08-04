@@ -45,6 +45,31 @@ namespace WebAppFinalTaskList.Controllers
 
         }
 
+        [HttpGet]
+        public ViewResult Delete(int id)
+        {
+            var c = this.GetTask(id);
+            return View(c);
+        }
+
+        [HttpPost]
+        public RedirectToActionResult Delete(TaskModel c)
+        {
+            tasks.Delete(c);
+            tasks.Save();
+            return RedirectToAction("Index");
+        }
+
+        private TaskModel GetTask(int id)
+        {
+            var taskOptions = new QueryOptions<TaskModel>
+            {
+                Where = c => c.Id == id
+            };
+            var list = tasks.Get(taskOptions);
+            return list;
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
