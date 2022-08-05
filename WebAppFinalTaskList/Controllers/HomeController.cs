@@ -33,14 +33,16 @@ namespace WebAppFinalTaskList.Controllers
         [HttpGet]
         public ViewResult NewTask() => View();
 
+    
+
         //this is the method that will post the new Task
         [HttpPost]
         public IActionResult Add(TaskModel task)
         {
 
-                tasks.Insert(task);
-                tasks.Save();
-                return RedirectToAction("Index");
+            tasks.Insert(task);
+            tasks.Save();
+            return RedirectToAction("Index");
 
 
         }
@@ -75,5 +77,20 @@ namespace WebAppFinalTaskList.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+       [HttpGet]
+       public ActionResult Edit(int id)
+        {
+            return View();
+        }
+        public ActionResult Edit(Task task)
+        {
+            return RedirectToAction("Index");
+        }
+
+
+
+
     }
+
 }
+
