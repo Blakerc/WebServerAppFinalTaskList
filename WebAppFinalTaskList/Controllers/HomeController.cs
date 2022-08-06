@@ -29,7 +29,7 @@ namespace WebAppFinalTaskList.Controllers
             var taskOptions = new QueryOptions<TaskModel>
             {
             };
-            return View(tasks.List(taskOptions));
+            return View(tasks.List(taskOptions).OrderBy(t => t.TaskDateTime));
         }
         [HttpGet]
         public ViewResult AboutUs() => View();
@@ -42,8 +42,12 @@ namespace WebAppFinalTaskList.Controllers
         public ViewResult Raj() => View();
         [HttpGet]
         public ViewResult Ruairi() => View();
-
-
+        [HttpGet]
+        public ViewResult Database()
+        {
+            var taskOptions = new QueryOptions<TaskModel>{};
+            return View(tasks.List(taskOptions));
+        }
 
         //this is the method that will post the new Task
         [HttpPost]
@@ -118,10 +122,6 @@ namespace WebAppFinalTaskList.Controllers
         {
             return RedirectToAction("Index");
         }
-
-
-
-
     }
 
 }
