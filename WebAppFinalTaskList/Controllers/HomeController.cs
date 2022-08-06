@@ -29,11 +29,19 @@ namespace WebAppFinalTaskList.Controllers
             };
             return View(tasks.List(taskOptions));
         }
+        [HttpGet]
+        public ViewResult AboutUs() => View();
 
         [HttpGet]
         public ViewResult NewTask() => View();
+        [HttpGet]
+        public ViewResult Tahj() => View();
+        [HttpGet]
+        public ViewResult Raj() => View();
+        [HttpGet]
+        public ViewResult Ruairi() => View();
 
-    
+
 
         //this is the method that will post the new Task
         [HttpPost]
@@ -80,7 +88,7 @@ namespace WebAppFinalTaskList.Controllers
        [HttpGet]
        public ActionResult Edit(int id)
         {
-            return View();
+            return View("GetTask");
         }
         public ActionResult Edit(Task task)
         {
