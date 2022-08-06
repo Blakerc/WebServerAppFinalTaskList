@@ -1,7 +1,7 @@
-﻿@{
+﻿@model IEnumerable<TaskModel>
+@{
     ViewData["Title"] = "Home Page";
 }
-@model IEnumerable<TaskModel>
 <!DOCTYPE html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -17,23 +17,23 @@
     <tr>  
         <th>Title </th>  
         <th>Description </th>  
-        <th>Date/Time</th>   
+        <th>Date/Time</th>
+        <th>Action</th>
     </tr>  
-    @foreach (TaskModel t in Model)  
+    @foreach (var t in Model)  
     {  
         <tr>  
             <td>@t.Title</td>  
             <td>@t.Description</td>  
             <td>@t.TaskDateTime</td>
-            <td>@t.Id</td>
             <td>
-                <form asp-action="Delete" method="post" asp-route-id="@t.Id">
+                <form asp-action="Delete" method="post" asp-route-id="@t.Id" style="display: inline;">
                     <input type="hidden" />
                     <button type="submit" class="btn btn-success">Complete</button>
                 </form>
-                <form asp-action="Edit" method="post" asp-route-id="@t.Id">
+                <form method="get" style="display: inline;">
                     <input type="hidden" />
-                    <button type="submit" class="btn btn-success">Edit</button>
+                    <button type="submit" class="btn btn-success" asp-controller="Home" asp-action="Edit" asp-route-id="@t.Id">Edit</button>
                 </form>
 
             </td>

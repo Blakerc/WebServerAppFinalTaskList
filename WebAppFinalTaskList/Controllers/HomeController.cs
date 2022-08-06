@@ -15,10 +15,12 @@ namespace WebAppFinalTaskList.Controllers
     {
         private Repository<TaskModel> tasks { get; set; }
 
+        private TaskContext context { get; set; }
+
         public HomeController(TaskContext ctx)
         {
             tasks = new Repository<TaskModel>(ctx);
-
+            context = ctx;
         }
 
         public ViewResult Index(int id)
@@ -47,12 +49,16 @@ namespace WebAppFinalTaskList.Controllers
         [HttpPost]
         public IActionResult Add(TaskModel task)
         {
-
-            tasks.Insert(task);
-            tasks.Save();
-            return RedirectToAction("Index");
-
-
+            if (ModelState.IsValid)
+            {
+                tasks.Insert(task);
+                tasks.Save();
+                return RedirectToAction("Index");
+            } else
+            {
+                return View("NewTask", task);
+            }
+            
         }
 
         [HttpGet]
@@ -70,6 +76,29 @@ namespace WebAppFinalTaskList.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ViewResult Edit(int Id)
+        {
+            var task = context.Tasks.Where(task => task.Id == Id).FirstOrDefault();
+            return View(task);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(TaskModel task)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Tasks.Update(task);
+                context.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View(task);
+            }
+            
+        }
+
         private TaskModel GetTask(int id)
         {
             var taskOptions = new QueryOptions<TaskModel>
@@ -84,11 +113,6 @@ namespace WebAppFinalTaskList.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-       [HttpGet]
-       public ActionResult Edit(int id)
-        {
-            return View("GetTask");
         }
         public ActionResult Edit(Task task)
         {
